@@ -8,16 +8,14 @@ html, body, #__next {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Important to prevent scrollbars from absolute positioned images */
+  /* REMOVED: overflow: hidden; */ /* This line is removed to enable scrolling */
   background-color: white; /* Ensure a flat white background */
 }
 
-/* --- NEW: Global Pixel Cursor --- */
+/* --- Global Pixel Cursor --- */
 html {
   cursor: url('/pixel-cursor.png') 16 16, auto; /* Path to your cursor image, 16 16 are hotspot coordinates (optional), auto is fallback */
 }
-/* Hotspot coordinates (e.g., 16 16 for a 32x32 image to center the click point)
-   adjust based on the actual size and desired click point of your pixel-cursor.png */
 
 
 /* Custom font styles for the design */
@@ -31,17 +29,17 @@ html {
 
 /* Fluid Typography using clamp() for precise control */
 .text-headline {
-  font-size: clamp(4.5rem, 10vw, 4.5rem);
-  line-height: 1; /* Made line-height very tight for headline */
+  font-size: clamp(4.5rem, 10vw, 5rem);
+  line-height: 0.9; /* Made line-height extremely tight for headline */
 }
 
 .text-tagline {
-  font-size: clamp(1.8rem, 2vw, 1.5rem);
-  line-height: 1.1; /* Adjusted line-height for tagline to bring it closer */
+  font-size: clamp(1rem, 2vw, 1.25rem); /* Corrected clamp to min 1rem, max 1.25rem */
+  line-height: 1.1; /* Adjusted line-height for tagline to bring it much closer */
 }
 
 .text-contact-link {
-  font-size: clamp(1rem, 2vw, 1.125rem);
+  font-size: clamp(0.875rem, 1.8vw, 1.125rem);
   line-height: 1.5;
 }
 
@@ -51,34 +49,33 @@ html {
 }
 
 
-/* Positioning for the pixel graphics */
+/* Positioning for the pixel graphics (still in CSS even if image components are deleted, for cleanup later) */
 .pixel-graphic-top-left {
   position: absolute;
-  top: -200px;
-  left: -200px;
-  width: 1000px;
-  height: auto;
+  top: -10vw; /* Adjust to pull it further up/left */
+  left: -10vw;
+  width: 45vw; /* Example: now 45% of viewport width */
+  height: auto; /* Maintain aspect ratio */
   z-index: 0;
   pointer-events: none;
 }
 
 .pixel-graphic-bottom-right {
   position: absolute;
-  bottom: -200px;
-  right: -200px;
-  width: 1000px;
-  height: auto;
+  bottom: -10vw; /* Adjust to push it further down/right */
+  right: -10vw;
+  width: 40vw; /* Example: now 40% of viewport width */
+  height: auto; /* Maintain aspect ratio */
   z-index: 0;
   pointer-events: none;
 }
 
 .content-wrapper {
   position: relative;
+  /* REMOVED: height: 100vh; and display: flex; as these are better handled by flex on the layout's main container */
   z-index: 1;
-  height: 100vh;
-  display: flex;
-  /* Increased bottom padding significantly to create separation from blob */
-  padding: 8vh 6vw 10vh 6vw; /* Increased bottom padding from 3vh to 10vh */
+  /* Applied global padding here */
+  padding: 8vh 6vw 8vh 6vw; /* This padding will now apply to all pages wrapped by this */
 }
 
 /* --- NEW / Modified Styles for Right Side Links --- */
@@ -86,8 +83,6 @@ html {
   color: inherit;
   text-decoration: none;
   transition: all 0.15s ease-in-out;
-  /* Add the custom cursor here to override default link cursor */
-  /* Ensure the hotspot coordinates (16 16) match your pixel-cursor.png size */
   cursor: url('/pixel-cursor.png') 16 16, auto;
 }
 
@@ -95,7 +90,5 @@ html {
   font-weight: 600;
   text-decoration: underline;
   color: black;
-  /* Explicitly keep the custom cursor on hover as well, for robustness */
-  /* This prevents any potential browser default overriding on hover specifically */
   cursor: url('/pixel-cursor.png') 16 16, auto;
 }
