@@ -1,150 +1,101 @@
-@import 'tailwindcss';
+/* app/global.css */
 
-::selection {
-  background-color: #47a3f3;
-  color: #fefefe;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #__next {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Important to prevent scrollbars from absolute positioned images */
+  background-color: white; /* Ensure a flat white background */
 }
 
-:root {
-  --sh-class: #2d5e9d;
-  --sh-identifier: #354150;
-  --sh-sign: #8996a3;
-  --sh-string: #007f7a;
-  --sh-keyword: #e02518;
-  --sh-comment: #a19595;
-  --sh-jsxliterals: #6266d1;
-  --sh-property: #e25a1c;
-  --sh-entity: #e25a1c;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --sh-class: #4c97f8;
-    --sh-identifier: white;
-    --sh-keyword: #f47067;
-    --sh-string: #0fa295;
-  }
-  html {
-    color-scheme: dark;
-  }
-}
-
+/* --- NEW: Global Pixel Cursor --- */
 html {
-  min-width: 360px;
+  cursor: url('/pixel-cursor.png') 16 16, auto; /* Path to your cursor image, 16 16 are hotspot coordinates (optional), auto is fallback */
+}
+/* Hotspot coordinates (e.g., 16 16 for a 32x32 image to center the click point)
+   adjust based on the actual size and desired click point of your pixel-cursor.png */
+
+
+/* Custom font styles for the design */
+.font-sans-serif-modern {
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-.prose .anchor {
-  @apply absolute invisible no-underline;
-
-  margin-left: -1em;
-  padding-right: 0.5em;
-  width: 80%;
-  max-width: 700px;
-  cursor: pointer;
+.font-serif-modern {
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
-.anchor:hover {
-  @apply visible;
+/* Fluid Typography using clamp() for precise control */
+.text-headline {
+  font-size: clamp(4.5rem, 10vw, 4.5rem);
+  line-height: 1; /* Made line-height very tight for headline */
 }
 
-.prose a {
-  @apply underline transition-all decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em];
+.text-tagline {
+  font-size: clamp(1.8rem, 2vw, 1.5rem);
+  line-height: 1.1; /* Adjusted line-height for tagline to bring it closer */
 }
 
-.prose .anchor:after {
-  @apply text-neutral-300 dark:text-neutral-700;
-  content: '#';
-}
-
-.prose *:hover > .anchor {
-  @apply visible;
-}
-
-.prose pre {
-  @apply bg-neutral-50 dark:bg-neutral-900 rounded-lg overflow-x-auto border border-neutral-200 dark:border-neutral-900 py-2 px-3 text-sm;
-}
-
-.prose code {
-  @apply px-1 py-0.5 rounded-lg;
-}
-
-.prose pre code {
-  @apply p-0;
-  border: initial;
+.text-contact-link {
+  font-size: clamp(1rem, 2vw, 1.125rem);
   line-height: 1.5;
 }
 
-.prose code span {
-  @apply font-medium;
+.text-nav-link {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  line-height: 1.5;
 }
 
-.prose img {
-  /* Don't apply styles to next/image */
-  @apply m-0;
+
+/* Positioning for the pixel graphics */
+.pixel-graphic-top-left {
+  position: absolute;
+  top: -200px;
+  left: -200px;
+  width: 1000px;
+  height: auto;
+  z-index: 0;
+  pointer-events: none;
 }
 
-.prose p {
-  @apply my-4 text-neutral-800 dark:text-neutral-200;
+.pixel-graphic-bottom-right {
+  position: absolute;
+  bottom: -200px;
+  right: -200px;
+  width: 1000px;
+  height: auto;
+  z-index: 0;
+  pointer-events: none;
 }
 
-.prose h1 {
-  @apply text-4xl font-medium tracking-tight mt-6 mb-2;
+.content-wrapper {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+  display: flex;
+  /* Increased bottom padding significantly to create separation from blob */
+  padding: 8vh 6vw 10vh 6vw; /* Increased bottom padding from 3vh to 10vh */
 }
 
-.prose h2 {
-  @apply text-xl font-medium tracking-tight mt-6 mb-2;
+/* --- NEW / Modified Styles for Right Side Links --- */
+.nav-link-style {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.15s ease-in-out;
+  /* Add the custom cursor here to override default link cursor */
+  /* Ensure the hotspot coordinates (16 16) match your pixel-cursor.png size */
+  cursor: url('/pixel-cursor.png') 16 16, auto;
 }
 
-.prose h3 {
-  @apply text-xl font-medium tracking-tight mt-6 mb-2;
-}
-
-.prose h4 {
-  @apply text-lg font-medium tracking-tight mt-6 mb-2;
-}
-
-.prose strong {
-  @apply font-medium;
-}
-
-.prose ul {
-  @apply list-disc pl-6;
-}
-
-.prose ol {
-  @apply list-decimal pl-6;
-}
-
-.prose > :first-child {
-  /* Override removing top margin, causing layout shift */
-  margin-top: 1.25em !important;
-  margin-bottom: 1.25em !important;
-}
-
-pre::-webkit-scrollbar {
-  display: none;
-}
-
-pre {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
-
-/* Remove Safari input shadow on mobile */
-input[type='text'],
-input[type='email'] {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-table {
-  display: block;
-  max-width: fit-content;
-  overflow-x: auto;
-  white-space: nowrap;
-}
-
-.title {
-  text-wrap: balance;
+.nav-link-style:hover {
+  font-weight: 600;
+  text-decoration: underline;
+  color: black;
+  /* Explicitly keep the custom cursor on hover as well, for robustness */
+  /* This prevents any potential browser default overriding on hover specifically */
+  cursor: url('/pixel-cursor.png') 16 16, auto;
 }
