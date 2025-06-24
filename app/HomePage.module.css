@@ -12,12 +12,11 @@
     width: 100%;
     max-width: 1000px;
     border: 2px solid #4a90e2;
-    padding: 8rem 10rem; /* Adjusted padding */
+    padding: 8rem 10rem;
     position: relative;
     text-align: center;
 }
 
-/* Default styles for large and medium screens (logo in corner) */
 .initials {
     position: absolute;
     top: 3rem;
@@ -70,9 +69,24 @@
     text-align: right;
 }
 
-.linkItem {
+.linkItemWrapper {
+    position: relative;
+    padding-right: 2rem; /* Add space for the line */
     margin-bottom: 1.5rem;
 }
+
+.line {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 4px;
+}
+
+.line1 { background-color: #F3B2FB; }
+.line2 { background-color: #EE6FFF; }
+.line3 { background-color: #70AFF7; }
+.line4 { background-color: #7272F8; }
 
 .linkItem a {
     text-decoration: none;
@@ -95,7 +109,7 @@
 
 @media (max-width: 1200px) {
     .contentWrapper {
-        padding: 6rem 8rem; /* Reduce padding for medium screens */
+        padding: 6rem 8rem;
     }
 }
 
@@ -104,7 +118,7 @@
         white-space: normal;
     }
     .contentWrapper {
-        padding: 5rem 6rem; /* Further reduce padding */
+        padding: 5rem 6rem;
     }
 }
 
@@ -115,11 +129,6 @@
     .title {
         font-size: 3rem;
     }
-
-    .tagline {
-        font-size: 1.5rem;
-    }
-
     .mainContent {
         flex-direction: column;
         align-items: center;
@@ -132,7 +141,6 @@
     }
 }
 
-/* Layout change for small mobile screens ONLY */
 @media (max-width: 640px) {
     .header {
         padding-top: 80px; 

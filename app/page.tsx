@@ -22,29 +22,41 @@ export default function HomePage() {
               </p>
             </div>
             <div className={styles.links}>
-              <div className={styles.linkItem}>
-                <a href="https://oratoraai.com" target="_blank" rel="noopener noreferrer">
-                  Oratora
-                </a>
-                <p className={styles.linkDescription}>an AI-powered enterprise LMS</p>
+              <div className={styles.linkItemWrapper}>
+                <div className={styles.linkItem}>
+                  <a href="https://oratoraai.com" target="_blank" rel="noopener noreferrer">
+                    Oratora
+                  </a>
+                  <p className={styles.linkDescription}>an AI-powered enterprise LMS</p>
+                </div>
+                <div className={`${styles.line} ${styles.line1}`}></div>
               </div>
-              <div className={styles.linkItem}>
-                <a href="/case-studies" target="_blank" rel="noopener noreferrer">
-                  Case Studies
-                </a>
-                <p className={styles.linkDescription}>of a product manager</p>
+              <div className={styles.linkItemWrapper}>
+                <div className={styles.linkItem}>
+                  <a href="/case-studies" target="_blank" rel="noopener noreferrer">
+                    Case Studies
+                  </a>
+                  <p className={styles.linkDescription}>of a product manager</p>
+                </div>
+                <div className={`${styles.line} ${styles.line2}`}></div>
               </div>
-              <div className={styles.linkItem}>
-                <a href="/crato" target="_blank" rel="noopener noreferrer">
-                  Crato
-                </a>
-                <p className={styles.linkDescription}>a capstone project agency</p>
+              <div className={styles.linkItemWrapper}>
+                <div className={styles.linkItem}>
+                  <a href="/crato" target="_blank" rel="noopener noreferrer">
+                    Crato
+                  </a>
+                  <p className={styles.linkDescription}>a capstone project agency</p>
+                </div>
+                <div className={`${styles.line} ${styles.line3}`}></div>
               </div>
-              <div className={styles.linkItem}>
-                <a href="/blog" target="_blank" rel="noopener noreferrer">
-                  Knick Knacks
-                </a>
-                <p className={styles.linkDescription}>a personal blog</p>
+              <div className={styles.linkItemWrapper}>
+                <div className={styles.linkItem}>
+                  <a href="/blog" target="_blank" rel="noopener noreferrer">
+                    Knick Knacks
+                  </a>
+                  <p className={styles.linkDescription}>a personal blog</p>
+                </div>
+                <div className={`${styles.line} ${styles.line4}`}></div>
               </div>
             </div>
           </div>
