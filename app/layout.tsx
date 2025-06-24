@@ -1,28 +1,31 @@
 // app/layout.tsx
-import './global.css'; // Import the global CSS
+import './global.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google'; // Or your chosen font
-import { Bricolage_Grotesque } from 'next/font/google';
+import { Instrument_Serif } from 'next/font/google';
+import CustomCursor from './components/CustomCursor';
 
-const bricolageGrotesque = Bricolage_Grotesque({
+const instrumentSerif = Instrument_Serif({
   subsets: ['latin'],
-  display: 'swap', // 'swap' ensures text is visible during font loading
-  variable: '--font-bricolage-grotesque', // Define a CSS variable for easier use with Tailwind
+  weight: '400',
+  style: ['normal', 'italic'],
+  display: 'swap',
+  variable: '--font-instrument-serif',
 });
 
 export const metadata: Metadata = {
   title: 'Trishala Jain - Portfolio',
-  description: 'Trishala Jain - I build communication tools, ideate strategy playbooks, and ship human-centric products.',
+  description: 'I build communication tools, support personal brand creation, and ship human-centric products.',
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
-      <body className={`${bricolageGrotesque.className} antialiased bg-white text-black`}>
+    <html lang="en" style={{ '--font-instrument-serif': instrumentSerif.style.fontFamily } as React.CSSProperties}>
+      <body>
+        <CustomCursor />
         {children}
       </body>
     </html>
